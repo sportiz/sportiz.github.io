@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Sportiz</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="images/icons/favicon.png">
+<!--Loading bootstrap css-->
+<link type="text/css" rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+<link type="text/css" rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+<link type="text/css" rel="stylesheet"
+	href="styles/jquery-ui-1.10.4.custom.min.css">
+<link type="text/css" rel="stylesheet"
+	href="styles/font-awesome.min.css">
+<link type="text/css" rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="styles/animate.css">
+<link type="text/css" rel="stylesheet" href="styles/all.css">
+<link type="text/css" rel="stylesheet" href="styles/main.css">
+<link type="text/css" rel="stylesheet"
+	href="styles/style-responsive.css">
+<link type="text/css" rel="stylesheet"
+	href="styles/zabuto_calendar.min.css">
+<link type="text/css" rel="stylesheet" href="styles/pace.css">
+<link type="text/css" rel="stylesheet"
+	href="styles/jquery.news-ticker.css">
+<link type="text/css" rel="stylesheet" href="styles/custom/style.css">
+</head>
+<body>
+	<div>
+		<!--BEGIN BACK TO TOP-->
+		<a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+		<!--END BACK TO TOP-->
+		<!--BEGIN TOPBAR-->
+		<div id="header-topbar-option-demo" class="page-header-topbar">
+			<nav id="topbar" role="navigation" style="margin-bottom: 0;"
+				data-step="3" class="navbar navbar-default navbar-static-top">
+				<div class="navbar-header">
+					<button type="button" data-toggle="collapse"
+						data-target=".sidebar-collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span><span
+							class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span>
+					</button>
+					<a id="logo" href="index.html" class="navbar-brand"><span
+						class="fa fa-rocket"></span><span class="logo-text">Sportiz</span><span
+						style="display: none" class="logo-text-icon">µ</span></a>
+				</div>
+				<div class="topbar-main">
+					<a id="menu-toggle" href="#" class="hidden-xs"><i
+						class="fa fa-bars"></i></a>
+					<ul class="nav navbar navbar-top-links navbar-right mbn">
+						<li class="dropdown"><button type="button" style="margin-top: 6px;"
+								class="btn btn-danger" data-toggle="modal" data-target="#myModal">New Request</button></li>
+						<!-- 						<li class="dropdown topbar-user"><a data-hover="dropdown"
+							href="#" class="dropdown-toggle"><img
+								src="images/avatar/48.jpg" alt=""
+								class="img-responsive img-circle" />&nbsp;<span
+								class="hidden-xs">Shashank Agrawal</span>&nbsp;<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-user pull-right">
+								<li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
+								<li><a href="#"><i class="fa fa-calendar"></i>My
+										Requests</a></li>
+								<li class="divider"></li>
+								<li><a href="Login.html"><i class="fa fa-key"></i>Log
+										Out</a></li>
+							</ul></li> -->
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!--END TOPBAR-->
+		<div id="wrapper">
+			<!--BEGIN SIDEBAR MENU-->
+			<nav id="sidebar" role="navigation" data-step="2"
+				data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+				data-position="right" class="navbar-default navbar-static-side">
+				<div id="context-menu" class="sidebar-collapse menu-scroll"></div>
+			</nav>
+			<!--END SIDEBAR MENU-->
+			<!--BEGIN PAGE WRAPPER-->
+			<div id="page-wrapper">
+				<!--BEGIN TITLE & BREADCRUMB PAGE-->
+				<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+					<div class="carousel-inner">
+						<div class="item active">
+							<script
+								src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTRWH46Je8oi7m3Fy7HXNqFHAQI11DYOs"></script>
+							<script
+								src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+							<script type="text/javascript"
+								src="http://www.google.com/jsapi?key=AIzaSyCTRWH46Je8oi7m3Fy7HXNqFHAQI11DYOs"></script>
+							<div id="googleMap" style="height: 500px;"></div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<!--END TITLE & BREADCRUMB PAGE-->
+				<!--BEGIN MODAL FOR NEW REQUEST-->
+				<div id="myModal" class="modal fade" role="dialog">
+					<div id="login-overlay" class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Find your new teammates here</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-xs-6">
+										<div class="well">
+											<form id="loginForm" method="POST" action="/login/"
+												novalidate="novalidate">
+												<div class="form-group">
+													<label for="name" class="control-label">Name</label>
+													<input type="text" class="form-control" id="name"
+														name="name" value="" required=""
+														title="Please enter you name"> <span
+														class="help-block"></span>
+												</div>
+												<div class="form-group">
+													<label for="mobilenumber" class="control-label">Mobile Number</label>
+													<input type="text" class="form-control" id="mobilenumber"
+														name="mobilenumber" value="" required=""
+														title="Please enter your Mobile Number"> <span
+														class="help-block"></span>
+												</div>
+												<div class="form-group">
+													<label for="note" class="control-label">Looking For</label>
+													<textarea class="form-control" id="note"
+														name="note" value="" required=""
+														title="What are you looking for"></textarea>
+												</div>												
+												<div id="loginErrorMsg" class="alert alert-error hide">Wrong
+													username og password</div>
+												<div class="checkbox">
+													<label> <input type="checkbox" name="remember"
+														id="remember"> Remember login
+													</label>
+													<p class="help-block">(if this is a private computer)</p>
+												</div>
+												<button type="submit" class="btn btn-success btn-block">Login</button>
+												<a href="/forgot/" class="btn btn-default btn-block">Help
+													to login</a>
+											</form>
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<p class="lead">
+											Register now for <span class="text-success">FREE</span>
+										</p>
+										<ul class="list-unstyled" style="line-height: 2">
+											<li><span class="fa fa-check text-success"></span> See
+												all your orders</li>
+											<li><span class="fa fa-check text-success"></span> Fast
+												re-order</li>
+											<li><span class="fa fa-check text-success"></span> Save
+												your favorites</li>
+											<li><span class="fa fa-check text-success"></span> Fast
+												checkout</li>
+											<li><span class="fa fa-check text-success"></span> Get a
+												gift <small>(only new customers)</small></li>
+											<li><a href="/read-more/"><u>Read more</u></a></li>
+										</ul>
+										<p>
+											<a href="/new-customer/" class="btn btn-info btn-block">Yes
+												please, register now!</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--END MODAL FOR NEW REQUEST-->
+				<!--BEGIN FOOTER-->
+				<div id="footer">
+					<div class="copyright">
+						<a href="http://iSurround.com">2018 © iSurround Licence</a>
+					</div>
+				</div>
+				<!--END FOOTER-->
+			</div>
+			<!--END PAGE WRAPPER-->
+		</div>
+	</div>
+	<script src="script/custom/loadcontextmenu.js"></script>
+	<script src="script/custom/loadgooglemap.js"></script>
+	<script src="script/jquery-1.10.2.min.js"></script>
+	<script src="script/jquery-migrate-1.2.1.min.js"></script>
+	<script src="script/jquery-ui.js"></script>
+	<script src="script/bootstrap.min.js"></script>
+	<script src="script/bootstrap-hover-dropdown.js"></script>
+	<script src="script/html5shiv.js"></script>
+	<script src="script/respond.min.js"></script>
+	<script src="script/jquery.metisMenu.js"></script>
+	<script src="script/jquery.slimscroll.js"></script>
+	<script src="script/jquery.cookie.js"></script>
+	<script src="script/icheck.min.js"></script>
+	<script src="script/custom.min.js"></script>
+	<script src="script/jquery.news-ticker.js"></script>
+	<script src="script/jquery.menu.js"></script>
+	<script src="script/pace.min.js"></script>
+	<script src="script/holder.js"></script>
+	<script src="script/responsive-tabs.js"></script>
+	<script src="script/zabuto_calendar.min.js"></script>
+	<script src="script/index.js"></script>
+	<!--CORE JAVASCRIPT-->
+	<script src="script/main.js"></script>
+</body>
+</html>
