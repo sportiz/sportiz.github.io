@@ -155,4 +155,5 @@ function loadNewRequestMap(){
 		google.maps.event.addListener(marker, 'dragend', function (evt) {
 			requestCenter = evt.latLng;
 		});
+	map.checkResize();
 };
