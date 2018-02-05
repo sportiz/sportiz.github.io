@@ -12,7 +12,7 @@ function submitRequest() {
 				new google.maps.Marker({
 					position : requestCenter,
 					map : map,
-					icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+					icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
 				});
 			}).fail(function(err) {
 				$("#loginErrorMsg").removeClass("hide");
