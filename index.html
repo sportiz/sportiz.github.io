@@ -55,7 +55,7 @@
 						class="fa fa-bars"></i></a>
 					<ul class="nav navbar navbar-top-links navbar-right mbn">
 						<li class="dropdown"><button type="button" style="margin-top: 6px;"
-								class="btn btn-danger" data-toggle="modal" data-target="#myModal">New Request</button></li>
+								class="btn btn-danger" data-toggle="modal" data-target="#myModal" onClick="loadNewRequestMap();">New Request</button></li>
 						<!-- 						<li class="dropdown topbar-user"><a data-hover="dropdown"
 							href="#" class="dropdown-toggle"><img
 								src="images/avatar/48.jpg" alt=""
@@ -114,63 +114,34 @@
 								<div class="row">
 									<div class="col-xs-6">
 										<div class="well">
-											<form id="loginForm" method="POST" action="/login/"
-												novalidate="novalidate">
-												<div class="form-group">
-													<label for="name" class="control-label">Name</label>
-													<input type="text" class="form-control" id="name"
-														name="name" value="" required=""
-														title="Please enter you name"> <span
-														class="help-block"></span>
-												</div>
-												<div class="form-group">
-													<label for="mobilenumber" class="control-label">Mobile Number</label>
-													<input type="text" class="form-control" id="mobilenumber"
-														name="mobilenumber" value="" required=""
-														title="Please enter your Mobile Number"> <span
-														class="help-block"></span>
-												</div>
-												<div class="form-group">
-													<label for="note" class="control-label">Looking For</label>
-													<textarea class="form-control" id="note"
-														name="note" value="" required=""
-														title="What are you looking for"></textarea>
-												</div>												
-												<div id="loginErrorMsg" class="alert alert-error hide">Wrong
-													username og password</div>
-												<div class="checkbox">
-													<label> <input type="checkbox" name="remember"
-														id="remember"> Remember login
-													</label>
-													<p class="help-block">(if this is a private computer)</p>
-												</div>
-												<button type="submit" class="btn btn-success btn-block">Login</button>
-												<a href="/forgot/" class="btn btn-default btn-block">Help
-													to login</a>
-											</form>
-										</div>
+											<div class="form-group">
+												<label for="name" class="control-label">Name</label>
+												<input type="text" class="form-control" id="name"
+													name="name" value="" required=""
+													title="Please enter you name"> <span
+													class="help-block"></span>
+											</div>
+											<div class="form-group">
+												<label for="mobilenumber" class="control-label">Mobile Number</label>
+												<input type="text" class="form-control" id="mobilenumber"
+													name="mobilenumber" value="" required=""
+													title="Please enter your Mobile Number"> <span
+													class="help-block"></span>
+											</div>
+											<div class="form-group">
+												<label for="note" class="control-label">Looking For</label>
+												<textarea class="form-control" id="note"
+													name="note" value="" required=""
+													title="What are you looking for"></textarea>
+											</div>												
+											<div id="loginErrorMsg" class="alert alert-error hide">Error in submiting your request. Pleasr try again.</div>
+											<button type="submit" class="btn btn-success btn-block" data-dismiss="modal" target="_blank" onClick="submitRequest();">Find Now</button>
+									</div>
 									</div>
 									<div class="col-xs-6">
-										<p class="lead">
-											Register now for <span class="text-success">FREE</span>
-										</p>
-										<ul class="list-unstyled" style="line-height: 2">
-											<li><span class="fa fa-check text-success"></span> See
-												all your orders</li>
-											<li><span class="fa fa-check text-success"></span> Fast
-												re-order</li>
-											<li><span class="fa fa-check text-success"></span> Save
-												your favorites</li>
-											<li><span class="fa fa-check text-success"></span> Fast
-												checkout</li>
-											<li><span class="fa fa-check text-success"></span> Get a
-												gift <small>(only new customers)</small></li>
-											<li><a href="/read-more/"><u>Read more</u></a></li>
-										</ul>
-										<p>
-											<a href="/new-customer/" class="btn btn-info btn-block">Yes
-												please, register now!</a>
-										</p>
+										<h5>Your location will be shown as selected here.
+										</h5>
+										<div id="requestMap" style="height: 245px;"></div>
 									</div>
 								</div>
 							</div>
@@ -191,6 +162,7 @@
 	</div>
 	<script src="script/custom/loadcontextmenu.js"></script>
 	<script src="script/custom/loadgooglemap.js"></script>
+	<script src="script/custom/submitrequest.js"></script>
 	<script src="script/jquery-1.10.2.min.js"></script>
 	<script src="script/jquery-migrate-1.2.1.min.js"></script>
 	<script src="script/jquery-ui.js"></script>

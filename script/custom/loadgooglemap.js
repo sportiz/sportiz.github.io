@@ -1,6 +1,11 @@
 var markers = [];
 var map;
+var myCenter;
+var requestCenter;
 $(function() {
+	$('#myModal').on('hide.bs.modal', function (e) {
+		//location.reload();
+    });
 	$
 			.ajax({
 				type : "GET",
@@ -14,7 +19,6 @@ $(function() {
 										window,
 										'load',
 										function() {
-											var myCenter;
 											if (navigator.geolocation) {
 												navigator.geolocation
 														.getCurrentPosition(
@@ -70,7 +74,9 @@ function loadRequestMarkers(myCenter, data) {
 				infowindow.open(map, marker);
 			};
 		})(marker, i));
-
+		if(i==0){
+			new google.maps.event.trigger( marker, 'click' );
+		}
 	}
 	loadContextMenu();
 }
@@ -122,6 +128,31 @@ function updateMarkers(sport){
 					infowindow.open(map, marker);
 				};
 			})(marker, i));
+			if(i==0){
+				new google.maps.event.trigger( marker, 'click' );
+			}
 		};
 	});
-}
+};
+
+function loadNewRequestMap(){
+	resetNewRequestPageElement();
+	
+	requestCenter = myCenter;
+	var mapProp = {
+			center : myCenter,
+			zoom : 15,
+			draggable: true,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		};
+		var requestMap = new google.maps.Map(document.getElementById("requestMap"), mapProp);
+		var marker = new google.maps.Marker({
+				position : new google.maps.LatLng(myCenter.lat(),
+						myCenter.lng()),
+				draggable: true,						
+				map : requestMap
+			});
+		google.maps.event.addListener(marker, 'dragend', function (evt) {
+			requestCenter = evt.latLng;
+		});
+};
