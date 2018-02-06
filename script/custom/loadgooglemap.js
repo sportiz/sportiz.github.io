@@ -6,6 +6,12 @@ $(function() {
 	$('#myModal').on('hide.bs.modal', function (e) {
 		//location.reload();
     });
+	$("#mobilenumber").keypress(function (e) {
+	     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	        $("#errmsg").html("Only numbers are allowed").show().fadeOut("slow");
+	               return false;
+	    }
+	   });
 	$
 			.ajax({
 				type : "GET",
@@ -84,7 +90,7 @@ function loadRequestMarkers(myCenter, data) {
 function prepareMessageWindow(){
 	return `<div><img src="images/avatar/48.jpg" class="img-responsive img-circle" style="float:left"/>&nbsp;<span`+
 	`class="hidden-xs" style = "float:left"><h5><b>  Robert John</b></h5>  Need 4th player for tennis</span></div>`+
-	`<a href="#"><font color="blue">Call</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">Chat</font>`;
+	`<a onClick="document.getElementById('call').innerHTML = '7890654321';"><font id="call" color="blue">Call</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">Chat</font>`;
 }	
 
 function deleteMarkers() {
@@ -155,5 +161,4 @@ function loadNewRequestMap(){
 		google.maps.event.addListener(marker, 'dragend', function (evt) {
 			requestCenter = evt.latLng;
 		});
-	map.checkResize();
 };

@@ -3,20 +3,25 @@ function submitRequest() {
 	var cellNumber = document.getElementById("mobilenumber").value;
 	var note = document.getElementById("note").value;
 
-	$.ajax({
-		type : "GET",
-		url : "submitRequest?name="+name+"&cell="+cellNumber+"&note="+note+"&lat="+requestCenter.lat()+"&long="+requestCenter.lng(),
-		dataType : "text"
-	}).done(
-			function(data) {
-				new google.maps.Marker({
-					position : requestCenter,
-					map : map,
-					icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-				});
-			}).fail(function(err) {
-				$("#loginErrorMsg").removeClass("hide");
-	});
+	if(name == "" || cellNumber =="" || note == "") {
+		$("#loginErrorMsg").removeClass("hide");
+	} else {
+		$.ajax({
+			type : "GET",
+			url : "submitRequest?name="+name+"&cell="+cellNumber+"&note="+note+"&lat="+requestCenter.lat()+"&long="+requestCenter.lng(),
+			dataType : "text"
+		}).done(
+				function(data) {
+					new google.maps.Marker({
+						position : requestCenter,
+						map : map,
+						icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+					});
+					$("#myModal").modal('hide');
+				}).fail(function(err) {
+					$("#loginErrorMsg").removeClass("hide");
+		});
+	};
 
 }
 
