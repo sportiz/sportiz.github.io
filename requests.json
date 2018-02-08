@@ -1,11 +1,24 @@
 [
-	[
-		38.953097, -77.425012
-	],
-	[
-		38.955093, -77.425022
-	],
-	[
-		38.950097, -77.425032	
-	]
+	{
+	"name" : "John Watson",
+	"mobile" : "1234567890",
+	"msg" : "Need 4th player for tennis",
+	"coord" : [
+			38.953097, -77.425012
+		]
+	} , {
+	"name" : "Sherlock Homes",
+	"mobile" : "1234567891",
+	"msg" : "Lets play tennis today",
+	"coord" :[
+			38.955093, -77.425022
+		]
+	} , {
+	"name" : "Mike Walker",
+	"mobile" : "1234567892",
+	"msg" : "Planning to play tennis. If anyone wants to join us.",
+	"coord" :[
+			38.950097, -77.425032	
+		]
+	}
 ]

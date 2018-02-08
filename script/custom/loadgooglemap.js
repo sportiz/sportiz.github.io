@@ -68,15 +68,15 @@ function loadRequestMarkers(myCenter, data) {
 	//markers = new Array();
 	for (var i = 0; i < locationsArr.length; i++) {
 		var marker = new google.maps.Marker({
-			position : new google.maps.LatLng(locationsArr[i][0],
-					locationsArr[i][1]),
+			position : new google.maps.LatLng(locationsArr[i].coord[0],
+					locationsArr[i].coord[1]),
 			map : map,
 		});
 		markers.push(marker);
 		var infowindow = new google.maps.InfoWindow();
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
-				infowindow.setContent(prepareMessageWindow());
+				infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
 				infowindow.open(map, marker);
 			};
 		})(marker, i));
@@ -87,10 +87,10 @@ function loadRequestMarkers(myCenter, data) {
 	loadContextMenu();
 }
 
-function prepareMessageWindow(){
-	return `<div><img src="images/avatar/48.jpg" class="img-responsive img-circle" style="float:left"/>&nbsp;<span`+
-	`class="hidden-xs" style = "float:left"><h5><b>  Robert John</b></h5>  Need 4th player for tennis</span></div>`+
-	`<a onClick="document.getElementById('call').innerHTML = '7890654321';"><font id="call" color="blue">Call</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">Chat</font>`;
+function prepareMessageWindow(name, mobile, msg){
+	return `<div><img src="images/avatar/1.jpg" class="img-responsive img-circle" style="float:left"/>&nbsp;<span`+
+	`class="hidden-xs" style = "float:left"><h5><b>   `+  name +`</b></h5> `+ msg +`</span></div>`+
+	`<a onClick="document.getElementById('call').innerHTML = '`+mobile+`';"><font id="call" color="blue">Call</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="blue">Chat</font>`;
 }	
 
 function deleteMarkers() {
@@ -122,15 +122,15 @@ function updateMarkers(sport){
 		var locationsArr = JSON.parse(data);
 		for (var i = 0; i < locationsArr.length; i++) {
 			var marker = new google.maps.Marker({
-				position : new google.maps.LatLng(locationsArr[i][0],
-						locationsArr[i][1]),
+				position : new google.maps.LatLng(locationsArr[i].coord[0],
+						locationsArr[i].coord[1]),
 				map : map,
 			});
 			markers.push(marker);
 			var infowindow = new google.maps.InfoWindow();
 			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				return function() {
-					infowindow.setContent(prepareMessageWindow());
+					infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
 					infowindow.open(map, marker);
 				};
 			})(marker, i));
