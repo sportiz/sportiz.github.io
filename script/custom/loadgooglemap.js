@@ -84,6 +84,9 @@ function loadRequestMarkers(myCenter, data) {
 			new google.maps.event.trigger( marker, 'click' );
 		}
 	}
+	google.maps.event.addListenerOnce(map, 'idle', function () {
+		google.maps.event.trigger(map, 'resize');
+		});
 	loadContextMenu();
 }
 
@@ -138,6 +141,9 @@ function updateMarkers(sport){
 				new google.maps.event.trigger( marker, 'click' );
 			}
 		};
+		google.maps.event.addListenerOnce(map, 'idle', function () {
+			google.maps.event.trigger(map, 'resize');
+			});
 	});
 };
 
@@ -161,4 +167,7 @@ function loadNewRequestMap(){
 		google.maps.event.addListener(marker, 'dragend', function (evt) {
 			requestCenter = evt.latLng;
 		});
+		google.maps.event.addListenerOnce(requestMap, 'idle', function () {
+			google.maps.event.trigger(requestMap, 'resize');
+			});
 };
