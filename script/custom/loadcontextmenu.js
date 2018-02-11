@@ -6,7 +6,7 @@ var contextMenu = `<ul id="side-menu" class="nav">
 					  type: 'GET',
 					  url: 'https://sportiz.herokuapp.com/context/',
 					  success: function(data) {
-						  	var menus = data;
+						  	var menus = JSON.parse(data);
 						  	var menuArray = menus.menu_items;
 						  	for (var menu in menuArray) {
 								var subContextItems = menuArray[menu].childs;
