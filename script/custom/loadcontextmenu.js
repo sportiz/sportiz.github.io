@@ -2,7 +2,7 @@ function loadContextMenu(){
 
 var contextMenu = `<ul id="side-menu" class="nav">
 				<div class="clearfix"></div>`;
-			jQuery.getJSON("context_menu.json",
+			jQuery.getJSON("https://sportiz.herokuapp.com/context/",
 					function(data) {
 					  	var menus = data;
 					  	var menuArray = menus.menu_items;
