@@ -2,8 +2,8 @@ function loadContextMenu(){
 
 var contextMenu = `<ul id="side-menu" class="nav">
 				<div class="clearfix"></div>`;
-				$.get("https://sportiz.herokuapp.com/context/").done(function(data) {
-						  	var menus = JSON.parse(data);
+				$.get("https://sportiz.herokuapp.com/context/").done(function(menus) {
+						  //	var menus = JSON.parse(data);
 						  	var menuArray = menus.menu_items;
 						  	for (var menu in menuArray) {
 								var subContextItems = menuArray[menu].childs;
