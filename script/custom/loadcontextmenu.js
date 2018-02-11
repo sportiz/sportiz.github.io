@@ -2,10 +2,7 @@ function loadContextMenu(){
 
 var contextMenu = `<ul id="side-menu" class="nav">
 				<div class="clearfix"></div>`;
-				$.ajax({
-					  type: 'GET',
-					  url: 'https://sportiz.herokuapp.com/context/',
-					  success: function(data) {
+				$.get("https://sportiz.herokuapp.com/context/").done(function(data) {
 						  	var menus = JSON.parse(data);
 						  	var menuArray = menus.menu_items;
 						  	for (var menu in menuArray) {
@@ -40,5 +37,5 @@ var contextMenu = `<ul id="side-menu" class="nav">
 						  	contextMenu += "</ul>";
 						  	document.getElementById("context-menu").innerHTML = contextMenu;
 					}
-				});
+				);
 }
