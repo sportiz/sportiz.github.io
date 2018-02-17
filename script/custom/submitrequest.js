@@ -1,3 +1,5 @@
+var selectedSport;
+
 function submitRequest() {
 	var name = document.getElementById("name").value;
 	var cellNumber = document.getElementById("mobilenumber").value;
@@ -6,9 +8,19 @@ function submitRequest() {
 	if(name == "" || cellNumber =="" || note == "") {
 		$("#loginErrorMsg").removeClass("hide");
 	} else {
+		var requestParam = {
+				'name' : name,
+				'mobileNubmer' : cellNumber,
+				'message' : note,
+				'sport' : selectedSport,
+				'latitude' : requestCenter.lat(),
+				'longitude' : requestCenter.lng()
+		};
+
 		$.ajax({
-			type : "GET",
-			url : "submitRequest?name="+name+"&cell="+cellNumber+"&note="+note+"&lat="+requestCenter.lat()+"&long="+requestCenter.lng(),
+			type : "POST",
+			url : "https://sportiz.herokuapp.com/requests/",
+			data: requestParam,
 			dataType : "text"
 		}).done(
 				function(data) {

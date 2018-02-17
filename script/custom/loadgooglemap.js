@@ -15,7 +15,7 @@ $(function() {
 	$
 			.ajax({
 				type : "GET",
-				url : "requests.json",
+				url : "https://sportiz.herokuapp.com/requests/",
 				dataType : "text"
 			})
 			.done(
@@ -114,11 +114,12 @@ function clearMarkers(sport) {
 };
 
 function updateMarkers(sport){
+	selectedSport = sport;
 	clearMarkers(sport);
 	$
 	.ajax({
 		type : "GET",
-		url : "requests.json?sport="+sport,
+		url : "https://sportiz.herokuapp.com/requests/"+sport,
 		dataType : "text"
 	})
 	.done(function(data) {

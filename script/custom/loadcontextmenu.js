@@ -6,7 +6,7 @@ var contextMenu = `<ul id="side-menu" class="nav">
 						  //	var menus = JSON.parse(data);
 						  	var menuArray = menus.menu_items;
 						  	for (var menu in menuArray) {
-								var subContextItems = menuArray[menu].childs;
+						  		var subContextItems = menuArray[menu].childs;
 								if(subContextItems != null){
 									var menuId = "submenu"+menu;
 									contextMenu += `<li><a href="#" id="btn-1" data-toggle="collapse"
@@ -24,6 +24,9 @@ var contextMenu = `<ul id="side-menu" class="nav">
 									}
 									contextMenu += "</ul>";
 								} else {
+							  		if(selectedSport == null){
+							  			selectedSport = menuArray[menu].value;
+							  		}
 									contextMenu += `<li><a onclick="updateMarkers('` +
 										menuArray[menu].value
 						  				+`');"><i class="`+menuArray[menu].icon+`">
