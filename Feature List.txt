@@ -1,3 +1,4 @@
 1. Add message on top to direct new request : 2/21/2018
 2. Enable user session management with login/signup funtionality : 2/28/2018
 3. Add "Term And Condition" for new request page : 2/28/2018
+4. When open one message window, other should close
