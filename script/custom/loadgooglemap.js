@@ -2,6 +2,7 @@ var markers = [];
 var map;
 var myCenter;
 var requestCenter;
+var trigger={};
 $(function() {
 	$('#myModal').on('hide.bs.modal', function (e) {
 		//location.reload();
@@ -22,8 +23,8 @@ $(function() {
 					function(data) {
 						google.maps.event
 								.addDomListener(
-										window,
-										'load',
+										trigger,
+										"triggerevent",
 										function() {
 											if (navigator.geolocation) {
 												navigator.geolocation
@@ -54,6 +55,7 @@ $(function() {
 											}
 
 										});
+						google.maps.event.trigger(trigger, "triggerevent");
 					});
 });
 
