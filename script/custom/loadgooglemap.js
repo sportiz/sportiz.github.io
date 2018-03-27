@@ -2,7 +2,7 @@ var markers = [];
 var map;
 var myCenter;
 var requestCenter;
-var trigger={};
+var  something={};
 $(function() {
 	$('#myModal').on('hide.bs.modal', function (e) {
 		//location.reload();
@@ -21,10 +21,11 @@ $(function() {
 			})
 			.done(
 					function(data) {
+						
 						google.maps.event
 								.addDomListener(
-										trigger,
-										"triggerevent",
+										something, 
+										"someevent",
 										function() {
 											if (navigator.geolocation) {
 												navigator.geolocation
@@ -55,7 +56,7 @@ $(function() {
 											}
 
 										});
-						google.maps.event.trigger(trigger, "triggerevent");
+						google.maps.event.trigger(something, "someevent");
 					});
 });
 
@@ -68,6 +69,7 @@ function loadRequestMarkers(myCenter, data) {
 	map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 	var locationsArr = JSON.parse(data);
 	//markers = new Array();
+	var infowindow = new google.maps.InfoWindow();
 	for (var i = 0; i < locationsArr.length; i++) {
 		var marker = new google.maps.Marker({
 			position : new google.maps.LatLng(locationsArr[i].coord[0],
@@ -75,7 +77,6 @@ function loadRequestMarkers(myCenter, data) {
 			map : map,
 		});
 		markers.push(marker);
-		var infowindow = new google.maps.InfoWindow();
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
 				infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));

@@ -1,4 +1,7 @@
-1. Add message on top to direct new request : 2/21/2018
-2. Enable user session management with login/signup funtionality : 2/28/2018
-3. Add "Term And Condition" for new request page : 2/28/2018
-4. When open one message window, other should close
+1. Add message on top to direct new request
+2. Add "Sport Preference" option for signed in user
+3. Add "Forget/Reset Password" functionality
+4. Keep session after page refresh
+5. Add "Term And Condition" for new request page
+6. When open one message window, other should close
+7. Add space for advertisement

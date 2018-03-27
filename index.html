@@ -64,21 +64,21 @@
 					<a id="menu-toggle" href="#" class="hidden-xs"><i
 						class="fa fa-bars"></i></a>
 					<ul class="nav navbar navbar-top-links navbar-right mbn">
-						<li class="dropdown"><button type="button" style="margin-top: 6px;"
-								class="btn btn-danger" data-toggle="modal" data-target="#myModal" onClick="loadNewRequestMap();">New Request</button></li>
-						<!-- 						<li class="dropdown topbar-user"><a data-hover="dropdown"
+						<li id="loginBtn" style="display: none; margin-top: 6px; margin-right: 6px;" class="dropdown"><button type="button"
+							class="btn btn-danger" data-toggle="modal" data-target="#loginModal" onClick="addKeyListners();" >Login to Post</button></li>
+						<li id="postBtn" style="display: none;" class="dropdown"><button type="button"
+							class="btn btn-danger" data-toggle="modal" data-target="#myModal" onClick="loadNewRequestMap();">Post Your Need</button></li>
+						<li id="userDetails" style="display: none;" class="dropdown topbar-user"><a data-hover="dropdown"
 							href="#" class="dropdown-toggle"><img
-								src="images/avatar/48.jpg" alt=""
-								class="img-responsive img-circle" />&nbsp;<span
-								class="hidden-xs">Shashank Agrawal</span>&nbsp;<span class="caret"></span></a>
+								src="images/avatar/1.jpg" alt=""
+								class="img-responsive img-circle" />&nbsp;<span id="loginUser"
+								class="hidden-xs">User</span>&nbsp;<span class="caret"></span></a>
 							<ul class="dropdown-menu dropdown-user pull-right">
-								<li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
-								<li><a href="#"><i class="fa fa-calendar"></i>My
-										Requests</a></li>
+								<li><a  data-toggle="modal" data-target="#changePwdModal" ><i class="fa fa-user"></i>Change Password</a></li>
 								<li class="divider"></li>
-								<li><a href="Login.html"><i class="fa fa-key"></i>Log
+								<li><a href="javascript:signoutUser()"><i class="fa fa-key"></i>Log
 										Out</a></li>
-							</ul></li> -->
+							</ul></li>
 					</ul>
 				</div>
 			</nav>
@@ -159,6 +159,127 @@
 					</div>
 				</div>
 				<!--END MODAL FOR NEW REQUEST-->
+				<!--BEGIN MODAL FOR LOGIN REQUEST-->
+				<div id="loginModal" class="modal fade" role="dialog">
+					<div id="login-overlay" class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Login to find your teammates</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-xs-6">
+										<h5>Provide your credential if alreay registered</h5>
+										<div class="well">
+											<div class="form-group">
+												<label for="login-username" class="control-label">Email/Username</label>
+												<input type="text" class="form-control" id="login-username"
+													name="login-username" value="" required=""
+													title="Username/Email"> <span
+													class="help-block"></span>
+											</div>
+											<div class="form-group">
+												<label for="login-password" class="control-label">Password</label>
+												<input type="password" class="form-control" id="login-password"
+													name="login-password" value="" required=""
+													title="Password"> <span
+													class="help-block"></span>
+											</div>												
+											<div id="loginError" class="alert alert-error hide">Invalid username/password. Please try again.</div>
+											<button type="submit" class="btn btn-success btn-block" onClick="loginUser();">Login</button>
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<h5>Create new account if not registered</h5>
+										<div class="well">
+											<div class="form-group">
+												<label for="signup-email" class="control-label">Email</label>
+												<input type="text" class="form-control" id="signup-email"
+													name="signup-email" value="" required=""
+													title="Please enter email id"><span id="signuperrmsg"></span>
+											</div>
+											<div class="form-group">
+												<label for="signup-password" class="control-label">Password</label>
+												<input type="password" class="form-control" id="signup-password"
+													name="signup-password" value="" required=""
+													title="Please enter password">
+											</div>
+											<div id="cpassword-div" class="form-group">
+												<label for="signup-cpassword" class="control-label">Confirm Password</label>
+												<input type="password" class="form-control" id="signup-cpassword"
+													name="signup-cpassword" value="" required=""
+													title="Confirm password">
+											</div>	
+											<div id="verifycode-div" class="form-group hide">
+												<label for="signup-verifycode" class="control-label">Verification Code</label>
+												<input type="text" class="form-control" id="signup-verifycode"
+													name="signup-verifycode" value="" required=""
+													title="Please check your email" maxlength="4"  pattern="\d{4}" required/>
+											</div>
+											<div id="signup-tnc-div" class="form-group">
+												<input type="checkbox" class="form-control" id="signup-tnc"
+													name="signup-tnc" value="" required=""> Please accept <a href="#">Term &amp; Condition</a> &nbsp;<span id="errmsg"></span> <span
+													class="help-block"></span>
+											</div>										
+											<div id="signupErrorMsg" class="alert alert-error hide"><span>Error in signin. Pleasr try again later.</span></div>
+											<button id="sendVerificationBtn" type="submit" class="btn btn-success btn-block" onClick="verifyUser();">Verify Account</button>
+											<button id="signupBtn" type="submit" class="btn btn-success btn-block hide" onClick="signupUser();">Sign Up</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--END MODAL FOR LOGIN REQUEST-->
+				<!--BEGIN MODAL FOR CHANGE PASSWORD-->
+				<div id="changePwdModal" class="modal fade" role="dialog">
+					<div id="changePwd-overlay" class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Update your password.</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="well">
+											<div class="form-group">
+												<label for="oldPassword" class="control-label">Old Password</label>
+												<input type="password" class="form-control" id="oldPassword"
+													name="oldPassword" value="" required=""
+													title="Old Password"> <span
+													class="help-block"></span>
+											</div>
+											<div class="form-group">
+												<label for="newPassword" class="control-label">New Password</label>
+												<input type="password" class="form-control" id="newPassword"
+													name="newPassword" value="" required=""
+													title="New Password"> <span
+													class="help-block"></span>
+											</div>
+											<div class="form-group">
+												<label for="cnewPassword" class="control-label">Confirm Password</label>
+												<input type="password" class="form-control" id="cnewPassword"
+													name="cnewPassword" value="" required=""
+													title="Confirm Password"> <span
+													class="help-block"></span>
+											</div>																						
+											<div id="changePwdError" class="alert alert-error hide"><span>Error in updating password. Try again.</span></div>
+											<button type="submit" class="btn btn-success btn-block" onClick="updatePassword();">Update</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--END MODAL FOR CHANGE PASSWORD-->
 				<!--BEGIN FOOTER-->
 				<div id="footer">
 					<div class="copyright">
@@ -173,6 +294,7 @@
 	<script src="script/custom/loadcontextmenu.js"></script>
 	<script src="script/custom/loadgooglemap.js"></script>
 	<script src="script/custom/submitrequest.js"></script>
+	<script src="script/custom/sessionmanagement.js"></script>
 	<script src="script/jquery-1.10.2.min.js"></script>
 	<script src="script/jquery-migrate-1.2.1.min.js"></script>
 	<script src="script/jquery-ui.js"></script>

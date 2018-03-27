@@ -21,7 +21,10 @@ function submitRequest() {
 			type : "POST",
 			url : "https://sportiz.herokuapp.com/requests/",
 			data: requestParam,
-			dataType : "text"
+			headers: {
+				Authorization : authKey
+			},
+			dataType : "json"
 		}).done(
 				function(data) {
 					new google.maps.Marker({
