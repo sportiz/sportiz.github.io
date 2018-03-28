@@ -4,7 +4,8 @@ function submitRequest() {
 	var name = document.getElementById("name").value;
 	var cellNumber = document.getElementById("mobilenumber").value;
 	var note = document.getElementById("note").value;
-
+	var emailId = $('#loginUser').text();
+	
 	if(name == "" || cellNumber =="" || note == "") {
 		$("#loginErrorMsg").removeClass("hide");
 	} else {
@@ -14,7 +15,8 @@ function submitRequest() {
 				'message' : note,
 				'sport' : selectedSport,
 				'latitude' : requestCenter.lat(),
-				'longitude' : requestCenter.lng()
+				'longitude' : requestCenter.lng(),
+				'creatorEmailId' : emailId
 		};
 
 		$.ajax({
@@ -27,11 +29,12 @@ function submitRequest() {
 			dataType : "json"
 		}).done(
 				function(data) {
-					new google.maps.Marker({
+					var createdMarker = new google.maps.Marker({
 						position : requestCenter,
 						map : map,
 						icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
 					});
+					markers.push(createdMarker);
 					$("#myModal").modal('hide');
 				}).fail(function(err) {
 					$("#loginErrorMsg").removeClass("hide");

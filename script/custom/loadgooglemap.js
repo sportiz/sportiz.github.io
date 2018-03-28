@@ -66,23 +66,40 @@ function loadRequestMarkers(myCenter, data) {
 		zoom : 15,
 		mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
+	var emailId = $('#loginUser').text();
 	map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 	var locationsArr = JSON.parse(data);
 	//markers = new Array();
 	var infowindow = new google.maps.InfoWindow();
 	for (var i = 0; i < locationsArr.length; i++) {
-		var marker = new google.maps.Marker({
-			position : new google.maps.LatLng(locationsArr[i].coord[0],
-					locationsArr[i].coord[1]),
-			map : map,
-		});
-		markers.push(marker);
-		google.maps.event.addListener(marker, 'click', (function(marker, i) {
-			return function() {
-				infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
-				infowindow.open(map, marker);
-			};
-		})(marker, i));
+		if(emailId == locationsArr[i].emailId) {
+			var marker = new google.maps.Marker({
+				position : new google.maps.LatLng(locationsArr[i].coord[0],
+						locationsArr[i].coord[1]),
+				map : map,
+				icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+			});
+			markers.push(marker);
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+					infowindow.setContent(prepareMessageWindowForSelf(locationsArr[i].msg));
+					infowindow.open(map, marker);
+				};
+			})(marker, i));
+		} else {
+			var marker = new google.maps.Marker({
+				position : new google.maps.LatLng(locationsArr[i].coord[0],
+						locationsArr[i].coord[1]),
+				map : map,
+			});
+			markers.push(marker);
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+					infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
+					infowindow.open(map, marker);
+				};
+			})(marker, i));
+		}
 		if(i==0){
 			new google.maps.event.trigger( marker, 'click' );
 		}
@@ -92,6 +109,11 @@ function loadRequestMarkers(myCenter, data) {
 		});
 	loadContextMenu();
 }
+
+function prepareMessageWindowForSelf(msg){
+	return `<div><img src="images/avatar/1.jpg" class="img-responsive img-circle" style="float:left"/>&nbsp;<span`+
+	`class="hidden-xs" style = "float:left"><h5><b> Your Request </b></h5> `+ msg +`</span></div>`;
+}	
 
 function prepareMessageWindow(name, mobile, msg){
 	return `<div><img src="images/avatar/1.jpg" class="img-responsive img-circle" style="float:left"/>&nbsp;<span`+
@@ -111,14 +133,14 @@ function setMapOnAll(map) {
   }
 };
 
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers(sport) {
+// Removes the markers from the map as well as empty marker list
+function clearMarkers() {
   setMapOnAll(null);
 };
 
 function updateMarkers(sport){
 	selectedSport = sport;
-	clearMarkers(sport);
+	deleteMarkers();
 	$
 	.ajax({
 		type : "GET",
@@ -127,20 +149,37 @@ function updateMarkers(sport){
 	})
 	.done(function(data) {
 		var locationsArr = JSON.parse(data);
+		var infowindow = new google.maps.InfoWindow();
+		var emailId = $('#loginUser').text();
 		for (var i = 0; i < locationsArr.length; i++) {
-			var marker = new google.maps.Marker({
-				position : new google.maps.LatLng(locationsArr[i].coord[0],
-						locationsArr[i].coord[1]),
-				map : map,
-			});
-			markers.push(marker);
-			var infowindow = new google.maps.InfoWindow();
-			google.maps.event.addListener(marker, 'click', (function(marker, i) {
-				return function() {
-					infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
-					infowindow.open(map, marker);
-				};
-			})(marker, i));
+			if(emailId == locationsArr[i].emailId) {
+				var marker = new google.maps.Marker({
+					position : new google.maps.LatLng(locationsArr[i].coord[0],
+							locationsArr[i].coord[1]),
+					map : map,
+					icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+				});
+				markers.push(marker);
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infowindow.setContent(prepareMessageWindowForSelf(locationsArr[i].msg));
+						infowindow.open(map, marker);
+					};
+				})(marker, i));
+			} else {
+				var marker = new google.maps.Marker({
+					position : new google.maps.LatLng(locationsArr[i].coord[0],
+							locationsArr[i].coord[1]),
+					map : map,
+				});
+				markers.push(marker);
+				google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+						infowindow.setContent(prepareMessageWindow(locationsArr[i].name, locationsArr[i].mobile, locationsArr[i].msg));
+						infowindow.open(map, marker);
+					};
+				})(marker, i));
+			}
 			if(i==0){
 				new google.maps.event.trigger( marker, 'click' );
 			}
