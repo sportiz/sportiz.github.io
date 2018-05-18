@@ -37,6 +37,14 @@ function submitRequest() {
 					markers.push(createdMarker);
 					$("#myModal").modal('hide');
 				}).fail(function(err) {
+					if(err.status==500 && err.responseJSON && err.responseJSON.exception && 
+							err.responseJSON.exception.indexOf("ExpiredJwtException")!=-1){
+						$("#myModal").modal('hide');
+						alert("Session expired. Please login again.");
+						invalidateSessionAndLogin();
+					} else {
+						$("#loginErrorMsg").removeClass("hide");
+					}
 					$("#loginErrorMsg").removeClass("hide");
 		});
 	};

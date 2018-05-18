@@ -250,3 +250,10 @@ function updatePassword(){
 				return;
 			});
 }
+
+function invalidateSessionAndLogin(){
+	authKey = null;
+	handleUserAuthKey();
+	addKeyListners();
+	$("#loginModal").modal();
+}

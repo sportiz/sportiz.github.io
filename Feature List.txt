@@ -1,9 +1,7 @@
-8. Show user their request in different color
-1. Add message on top to direct new request
-2. Add "Sport Preference" option for signed in user
+1. Add "Term And Condition" for new request page
+2. Keep session after page refresh
 3. Add "Forget/Reset Password" functionality
-4. Keep session after page refresh
-5. Add "Term And Condition" for new request page
-6. When open one message window, other should close
-7. Add space for advertisement
+4. Add "Sport Preference" option for signed in user
+5. Add message on top to direct new request
+6. Add space for advertisement
 
